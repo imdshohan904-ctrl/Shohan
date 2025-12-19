@@ -2,110 +2,250 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
+<title>Shohan Academic Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Academic & Student Resources</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-  body {
-    background: url(Engineering.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color:#fff;
-    min-height:100vh;
-    position: relative;
-  }
-  .overlay {
-    position:absolute; top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.5); z-index:0;
-  }
 
-  /* Top-right small text */
-  .top-right-text {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 14px;
-    color: #ffea00;
-    font-weight:600;
-    z-index:2;
-    text-shadow: 1px 1px 4px #000;
-  }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-  .header { position: relative; z-index:1; display:flex; align-items:center; padding:20px 40px; }
-  .header img { width:70px; height:70px; margin-right:20px; }
-  .header h1 { font-size:28px; color:#00ffe7; text-shadow:2px 2px 6px #000; }
+body{
+ background:url('Engineering.jpg') no-repeat fixed center;
+ background-size:cover;
+ min-height:100vh;
+ color:white;
+ overflow-x:hidden;
+}
 
-  .sections {
-    display:flex; justify-content:space-around; margin-top:50px; position:relative; z-index:1; flex-wrap:wrap;
-  }
-  .section {
-    background: rgba(0,0,0,0.6);
-    padding:20px;
-    border-radius:15px;
-    width:300px;
-    margin:10px;
-    text-align:center;
-    animation: fadeInUp 2s ease forwards;
-    transition: transform 0.3s;
-  }
-  .section:hover { transform: translateY(-5px); }
+/* overlay */
+body:before{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:rgba(0,0,0,0.63);
+ backdrop-filter:blur(4px);
+}
 
-  .section img { width:60px; height:60px; margin-bottom:15px; }
-  .section h2 { font-size:20px; margin-bottom:10px; color:#ffea00; }
-  .section p { font-size:16px; margin-bottom:15px; color:#fff; }
-  .section a {
-    display:inline-block; padding:12px 25px; background:linear-gradient(135deg,#ff5722,#ff9800);
-    color:#fff; border-radius:12px; text-decoration:none; font-weight:600;
-    box-shadow:0 4px 10px rgba(0,0,0,0.5);
-    transition:all 0.3s;
-  }
-  .section a:hover { transform:translateY(-5px); box-shadow:0 6px 15px rgba(0,0,0,0.6); }
+/* LOCK PAGE */
 
-  @keyframes fadeInUp { 0% { opacity:0; transform:translateY(50px); } 100% { opacity:1; transform:translateY(0); } }
+#lockBox{
+ width:350px;
+ padding:40px;
+ border-radius:25px;
+ backdrop-filter:blur(14px);
+ background:rgba(255,255,255,0.05);
+ text-align:center;
+ z-index:5;
+ box-shadow:0 0 35px rgba(0,255,255,0.35);
+ animation:drop 1.5s;
+ position:absolute;
+ top:50%;left:50%;
+ transform:translate(-50%,-50%);
+}
 
-  @media(max-width:1024px){ .sections { flex-direction:column; align-items:center; } }
+@keyframes drop{
+0%{transform:translate(-50%,-80%);opacity:0;}
+100%{opacity:1;}
+}
+
+.finger{
+ font-size:80px;
+ cursor:pointer;
+ user-select:none;
+ margin-bottom:15px;
+}
+
+h1{
+ font-size:28px;
+ font-weight:800;
+ color:#00fff2;
+ margin-bottom:5px;
+}
+
+p{
+ color:#ccc;
+ margin-bottom:20px;
+}
+
+input{
+ width:100%;
+ padding:15px;
+ border-radius:12px;
+ border:none;
+ outline:none;
+ text-align:center;
+ font-size:17px;
+ margin-bottom:20px;
+}
+
+button{
+ width:100%;
+ padding:14px;
+ border:none;
+ border-radius:12px;
+ font-size:18px;
+ font-weight:600;
+ color:white;
+ cursor:pointer;
+ background:linear-gradient(45deg,#ff00c8,#ff8a00);
+ box-shadow:0px 0px 20px rgba(0,0,0,.6);
+ transition:.3s;
+}
+
+button:hover{
+ transform:translateY(-3px);
+}
+
+#error{
+ margin-top:12px;
+ font-size:15px;
+ font-weight:600;
+ color:#ff5c5c;
+}
+
+/* WEBSITE PART */
+
+#site{
+ display:none;
+ position:relative;
+ z-index:5;
+ text-align:center;
+ padding-top:60px;
+}
+
+#site h2{
+ font-size:40px;
+ font-weight:800;
+ letter-spacing:3px;
+ color:#00fff9;
+ text-shadow:0px 0px 20px black;
+}
+
+.container{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ margin-top:50px;
+}
+
+.card{
+ width:330px;
+ background:rgba(255,255,255,0.06);
+ backdrop-filter:blur(15px);
+ border-radius:25px;
+ padding:35px 25px;
+ margin:20px;
+ text-align:center;
+ transition:0.35s;
+ border:1.6px solid rgba(255,255,255,0.06);
+ box-shadow:0 0 25px rgba(0,0,0,0.4);
+ cursor:pointer;
+}
+
+.card:hover{
+ transform:scale(1.07);
+ box-shadow:0px 0px 40px rgba(0,255,255,0.5);
+}
+
+.card img{
+ width:70px;height:70px;
+ border-radius:50%;
+ margin-bottom:15px;
+}
+
+.card h3{
+ color:#ffeb00;
+ font-size:21px;
+ margin-bottom:10px;
+}
+
+.card p{
+ font-size:15px;
+ margin-bottom:20px;
+}
+
+.card a{
+ padding:13px 30px;
+ background:linear-gradient(45deg,#ff0095,#ff8a00);
+ border-radius:13px;
+ color:white;
+ text-decoration:none;
+ font-size:15px;
+ font-weight:700;
+}
+
+.card a:hover{opacity:.85;}
+
 </style>
 </head>
+
 <body>
-<div class="overlay"></div>
 
-<!-- Top-right small text -->
-<div class="top-right-text">
-  SHOHAN, HSC-25
+<!-- LOCK SCREEN -->
+
+<div id="lockBox">
+ <div class="finger">🔐</div>
+ <h1>Secure Access</h1>
+ <p>Enter Password To Continue</p>
+
+ <input type="password" id="pass" placeholder="Password">
+
+ <button onclick="unlock()">UNLOCK</button>
+
+ <div id="error"></div>
 </div>
 
-<!-- Header -->
-<div class="header">
-  <img src="engineer_logo.png" alt="Engineer Logo">
-  <h2>Academic and admisson</h2>
+<!-- WEBSITE CONTENT HIDDEN -->
+
+<div id="site">
+
+<h2>ACADEMIC & ADMISSION PORTAL</h2>
+
+<div class="container">
+
+<div class="card">
+ <img src="egn.jpg">
+ <h3>Engineering Students</h3>
+ <p>Engineering admission & study resources</p>
+ <a href="https://imdshohan904-ctrl.github.io/Shohanvai/">OPEN</a>
 </div>
 
-<!-- Sections -->
-<div class="sections">
-  <!-- Engineering -->
-  <div class="section">
-    <img src="egn.jpg" alt="Engineering Logo">
-    <h2>For Engineering Students</h2>
-    <p>Engineering students জন্য তৈরি এই resources।</p>
-    <a href="https://imdshohan904-ctrl.github.io/Shohanvai/" target="_blank">📄 Open</a>
-  </div>
-
-  <!-- Medical -->
-  <div class="section">
-    <img src="medi.jpg" alt="Medical Logo">
-    <h2>For Medical Students</h2>
-    <p>Medical students এর জন্য গুরুত্বপূর্ণ 자료।</p>
-    <a href="https://imdshohan904-ctrl.github.io/sohan/" target="_blank">📄 Open</a>
-  </div>
-
-  <!-- University -->
-  <div class="section">
-    <img src="vs.jpg" alt="University Logo">
-    <h2>For University Students</h2>
-    <p>University students এর জন্য প্রয়োজনীয় materials।</p>
-    <a href="pdfs/university.pdf" target="_blank">📄 Download PDF</a>
-  </div>
+<div class="card">
+ <img src="medi.jpg">
+ <h3>Medical Students</h3>
+ <p>Medical admission & study materials</p>
+ <a href="https://imdshohan904-ctrl.github.io/sohan/">OPEN</a>
 </div>
+
+<div class="card">
+ <img src="vs.jpg">
+ <h3>University PDF Zone</h3>
+ <p>Download PDF academic files</p>
+ <a href="pdfs/university.pdf">PDF</a>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function unlock(){
+ let p=document.getElementById("pass").value;
+
+ if(p==="Shohan25"){
+   document.getElementById("lockBox").style.display="none";
+   document.getElementById("site").style.display="block";
+ } else {
+   document.getElementById("error").innerHTML="Wrong password ❌";
+ }
+
+}
+
+</script>
 
 </body>
 </html>
+  
